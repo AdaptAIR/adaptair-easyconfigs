@@ -8,8 +8,11 @@ description = """The Weather Research and Forecasting (WRF) Model is a next-gene
  numerical weather prediction system designed to serve both operational forecasting and atmospheric
  research needs."""
 
-toolchain = {'name': 'foss', 'version': '2024a'}
+toolchain = {'name': 'foss', 'version': '2023a'}
 toolchainopts = {'opt': False}  # don't use agressive optimization, stick to -O2
+
+# Ensure the fortran NETCDF is found, not the C version (although both are dependencies). This may not be needed with WRF-4.6.1_netCDF-Fortran_separate_path.patch
+preconfigopts = "export NETCDF=$NETCDFF && "
 
 github_account = 'wrf-model'
 source_urls = [GITHUB_RELEASE]
@@ -21,22 +24,23 @@ checksums = [
     {'WRF-4.6.1_netCDF-Fortran_separate_path.patch':
      '0fcc55df295910fe507a3938b420a9a211e6e2ce82de8ded347b54135994e716'},
 ]
-
 # csh is used by WRF install scripts
 builddependencies = [
-    ('Autotools', '20231222'),
-    ('tcsh', '6.24.13'),
-    ('time', '1.9'),
-    ('Perl', '5.38.2'),
+  ('Autotools', '20220317'),
+  ('tcsh', '6.24.10'),
+  ('time', '1.9'),
+  ('Perl', '5.36.1'),
 ]
 
 dependencies = [
-    ('JasPer', '4.2.4'),
-    ('netCDF', '4.9.2'),
-    ('netCDF-Fortran', '4.6.1'),
+  ('JasPer', '4.0.0'),
+  ('netCDF', '4.9.2'),
+  ('netCDF-Fortran', '4.6.1'),
+  ('PnetCDF', '1.12.3'),
 ]
 
-runtest = True
+# the test step fails with foss2023a on Stanage
+runtest = False
 
 # limit parallel build to 20
 maxparallel = 20
