@@ -231,13 +231,16 @@ class EB_WRF(EasyBlock):
             # set extra flags for Intel compilers
             # see http://software.intel.com/en-us/forums/showthread.php?t=72109&p=1#146748
             if self.comp_fam == toolchain.INTELCOMP:  # @UndefinedVariable
-
                 # -O3 -heap-arrays is required to resolve compilation error
-                for envvar in ['CFLAGS', 'FFLAGS']:
-                    val = os.getenv(envvar)
+                envars = ['FFLAGS']
+                if comps['SCC'] != 'icx':  # -heap-arrays not supported by LLVM-based icx
+                    envars.append('CFLAGS')
+                for envvar in envars:
+                    val = os.environ[envvar]
                     if '-O3' in val:
-                        env.setvar(envvar, '%s -heap-arrays' % val)
-                        self.log.info("Updated %s to '%s'" % (envvar, os.getenv(envvar)))
+                        val += ' -heap-arrays'
+                        env.setvar(envvar, val)
+                        self.log.info("Updated %s to '%s'" % (envvar, val))
 
             # replace -O3 with desired optimization options
             regex_subs = [
