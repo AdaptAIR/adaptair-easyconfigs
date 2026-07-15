@@ -29,7 +29,7 @@ builddependencies = [
   ('Autotools', '20220317'),
   ('tcsh', '6.24.10', '-GCCcore-12.3.0'),
   ('time', '1.9'),
-  ('Perl', '5.36.1'),
+  ('Perl', '5.36.1', '-GCCcore-12.3.0'),
 ]
 
 dependencies = [
