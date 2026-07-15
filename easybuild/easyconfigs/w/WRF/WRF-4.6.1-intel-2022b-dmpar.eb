@@ -34,9 +34,9 @@ builddependencies = [
 
 dependencies = [
   ('JasPer', '4.0.0'),
-  ('netCDF', '4.9.0'),
-  ('netCDF-Fortran', '4.6.0'),
-  ('PnetCDF', '1.12.3'),
+  ('netCDF', '4.9.0', '', ('iimpi', '2022b')),
+  ('netCDF-Fortran', '4.6.0', '', ('iimpi', '2022b')),
+  ('PnetCDF', '1.12.3', '', ('iimpi', '2022b')),
 ]
 
 # the test step fails with foss2023a on Stanage
