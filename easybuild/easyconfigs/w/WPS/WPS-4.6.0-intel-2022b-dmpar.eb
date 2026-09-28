@@ -31,7 +31,7 @@ buildtype = "dmpar"
 versionsuffix = '-%s' % buildtype
 
 builddependencies = [
-    ('Perl', '5.36.1'),
+    ('Perl', '5.36.0'),
 ]
 
 dependencies = [
@@ -39,8 +39,8 @@ dependencies = [
     ('JasPer', '4.0.0'),
     ('netCDF', '4.9.0', '', ('iimpi', '2022b')),
     ('netCDF-Fortran', '4.6.0', '', ('iimpi', '2022b')),
-    ('zlib', '1.2.13'),
-    ('libpng', '1.6.39'),
+    ('zlib', '1.2.12'),
+    ('libpng', '1.6.38'),
 ]
 
 moduleclass = 'geo'
