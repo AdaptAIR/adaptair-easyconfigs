@@ -173,7 +173,10 @@ class EB_WPS(EasyBlock):
             }
 
             if self.comp_fam == toolchain.INTELCOMP:  # @UndefinedVariable
-                build_type_option = " Linux x86_64, Intel compiler"
+                if LooseVersion(self.version) >= LooseVersion("3.6"):
+                    build_type_option = " Linux x86_64, Intel oneAPI compilers"
+                else:
+                    build_type_option = " Linux x86_64, Intel compiler"
 
             elif self.comp_fam == toolchain.GCC:  # @UndefinedVariable
                 if LooseVersion(self.version) >= LooseVersion("3.6"):
