@@ -28,6 +28,7 @@ checksums = [
 ]
 
 buildtype = "dmpar"
+configopts = '23'
 versionsuffix = '-%s' % buildtype
 
 builddependencies = [
